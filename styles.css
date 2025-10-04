@@ -1,0 +1,126 @@
+:root {
+  --bg: #b0f1e2;       /* 背景 */
+  --card: #a3c9ff;     /* カード色 */
+  --text: #0f172a;     /* 文字色 */
+  --muted: #475569;    /* サブ文字 */
+  --brand: #0ea5e9;    /* アクセント */
+  --border: #a5ccff;   /* 枠線 */
+}
+
+
+h1 {
+  display: flex;
+  justify-content: center;  /* 横方向中央 */
+  align-items: center;      /* 縦方向中央 */
+  height: 100vh;            /* ビューポートの高さ全部を使う */
+  margin: 0;
+  color: #88e1f3;
+}
+.hero {
+  background-image: url("img/Aurora.bg.png"); /* 背景画像 */
+  background-size: cover;     /* エリアいっぱいに調整 */
+  background-position: center; /* 中央に配置 */
+  background-repeat: no-repeat; /* 繰り返しなし */
+  height: 600px;              /* 高さを指定（必須！） */
+  color: white;               /* 文字色を白に変更 */
+  display: flex;              /* 縦横中央に寄せる */
+  justify-content: center;
+  align-items: center;
+}
+
+.poyo {
+  background-image: url(img/Aurora.bg.png);
+}
+
+
+.content p {
+  color: rgb(70, 207, 202);          /* 文字色を青に */
+  font-size: 30px;      /* フォントサイズ */
+  line-height: 1.6;     /* 行間 */
+  margin: 10px 0;       /* 上下の余白 */
+}
+
+
+
+.card {
+  width: 220px;
+  height: 140px;
+  background: #88e1f3;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #a1ffd0;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-header {
+  z-index: 1;
+}
+
+.card-content {
+  display: none;
+}
+
+/* ババーン！開いたとき */
+.card.open {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  margin: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+
+.card.open .card-header {
+  display: none;
+}
+
+.card.open .card-content {
+  display: block;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.card.open button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  background: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.messageCard {
+  display: flex;
+  justify-content: center;  /* 横方向の中央 */
+  align-items: center;      /* 縦方向の中央 */
+  height: 100vh;            /* 画面いっぱいにする場合 */
+}
+
+.love p {
+  color: rgb(70, 207, 202);          /* 文字色を青に */
+  font-size: 30px;      /* フォントサイズ */
+  line-height: 1.6;     /* 行間 */
+  margin: 10px 0;       /* 上下の余白 */
+}
