@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+  <title>happy birthday</title>
+  <meta name="description" content="HTMLは骨組み、CSSは見た目。自由研究で学んだことをまとめたサイトです。">
+  <meta name="author" content="あなたの名前" />
+
+  <!-- 共有時の見え方（任意：SNSカード） -->
+  <meta property="og:title" content="HTMLとCSSの自由研究">
+  <meta property="og:description" content="HTMLは骨組み、CSSは見た目。学んだことのまとめ。">
+  <meta property="og:type" content="website">
+
+  <!-- サイトの色（任意：モバイルのアドレスバー色など） -->
+  <meta name="theme-color" content="#b0c4de" />
+
+  <!-- 外部CSSを接続 -->
+  <link rel="stylesheet" href="styles.css" />
+
+</head>
+
+<body>
+   <div class="hero">
+    <h1>ぽよ誕生日おめでとう！！</h1>
+  </div>
+
+
+  <div class="poyo">
+    <div class="content">
+    <p>☆Movie</p>
+  <video controls width="640" height="360">
+      <source src="video/poyopoyopoyo.MP4" type="video/mp4">
+  </video>
+  </div>
+<div class="love">
+  <p>☆Message</p>
+</div>
+
+
+<div class="card" id="messageCard">
+    <div class="card-header">さくからぽよへ</div>
+    <div class="card-content">
+      <h2>happy birthday🎂</h2>
+      <p>ぽよへ
+      誕生日おめでとう、これで祝うの二回目なんて信じらんないね笑<br>
+      寮でほぼ24時間一緒に過ごしてたりしてたからまだ二回目？とも思うしも<br>
+      うぽよと会って一年以上過ぎたのかぁ、とも思います。<br>
+      多分今まで行ってなかったと思うけどいつもうちのわがままに振り回されてくれてありがとう笑<br>
+      いつもうちの無茶苦茶な話を聞いてくれてありがとう。<br>
+      同じクラスだし、同じ寮生だしあやのとかの所行きたいかもだけど<br>
+      いつもなんだかんだD組の教室までついてきてくれてありがとう。<br>
+      この一年だけでも多分、言い切れないくらいありがとうを伝えなきゃいけないと思う笑<br>
+      そのくらいいつも感謝してます、本当に色々いつもありがとう💕<br>
+      今年はクラス違うし、なんならAD組で全く会わないし、うち寮生でもないし、<br>
+    
+      関わる機会めちゃくちゃ減っちゃったなーって思うけど、<br>
+      毎日一緒にお昼食べれてMMCとかもたまに一緒に行けて本当に幸せです😘<br>
+      これからもたくさんお話ししようね、また図書館とかにも行こう‼️<br>
+      これからもよろしくね〜〜〜！！！１４歳、楽しい一年になりますように💛<br>
+      さく
+      </p>
+      <button id="closeBtn">閉じる</button>
+    </div>
+</div>
+
+      <script>
+    const card = document.getElementById("messageCard");
+    const closeBtn = document.getElementById("closeBtn");
+
+    // 開く
+    card.addEventListener("click", () => {
+      card.classList.add("open");
+    });
+
+    // 閉じる
+    closeBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // 親クリックを止める
+      card.classList.remove("open");
+    });
+  </script>
+
+</body>
+</html>
