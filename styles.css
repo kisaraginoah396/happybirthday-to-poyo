@@ -163,3 +163,177 @@ h1 {
   }
 }
 
+
+:root {
+  --space: clamp(12px, 2vw, 24px);
+  --radius: 16px;
+}
+
+/* 画像・動画ははみ出さない */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ラッパー幅と余白（PCで読みやすく、スマホで窮屈にならない） */
+.wrapper {
+  width: min(100% - 2rem, 1100px);
+  margin-inline: auto;
+  padding-block: var(--space);
+}
+
+/* ヒーローの高さを可変に（固定600pxのままだとスマホで窮屈） */
+.hero {
+  /* 背景指定は既存を利用（background-image など） */
+  min-height: clamp(40vh, 60vh, 72vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* ヒーロー内のH1（あなたのCSSでheight:100vhを使っていたので小画面で上書き） */
+.hero h1,
+h1 {
+  margin: 0;
+  padding: 0 var(--space);
+  height: auto;           /* 小画面でのはみ出し防止 */
+  font-size: clamp(20px, 5vw, 48px);
+  line-height: 1.2;
+  color: #88e1f3;         /* お好みで */
+}
+
+/* コンテンツ本文のタイポ調整 */
+.content p,
+.love p {
+  font-size: clamp(16px, 3.6vw, 20px);
+  line-height: 1.7;
+  margin: 0.75em 0;
+}
+
+/* 動画ブロックは横幅にフィット */
+.media {
+  margin-block: calc(var(--space) * 1.5);
+}
+.media video {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* センター配置用（特定コンテナで中央に） */
+.center .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh; /* 必要なら 100vh に変更可 */
+  padding-block: var(--space);
+}
+
+/* カード（閉じているとき） */
+.card {
+  width: clamp(220px, 60vw, 360px);
+  height: clamp(140px, 28vw, 200px);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  background: #88e1f3; /* お好みで。変数を使うなら var(--brand) など */
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #a1ffd0;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.card:hover { transform: translateY(-2px); }
+
+/* カード内 */
+.card-header { 
+  font-size: clamp(16px, 4vw, 18px);
+  font-weight: 700;
+  z-index: 1;
+}
+.card-content { display: none; }
+
+/* ババーン！（開いたとき） */
+.card.open {
+  position: fixed;
+  inset: 0;                 /* top:0; right:0; bottom:0; left:0 の短縮 */
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  margin: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+.card.open .card-header { display: none; }
+.card.open .card-content {
+  display: block;
+  text-align: center;
+  padding: var(--space);
+  font-size: clamp(18px, 4.8vw, 28px);
+}
+.card.open .closeBtn {
+  margin-top: 16px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* 低モーション設定の人には激しい動きを抑制 */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* ========== ブレークポイント別の微調整 ========== */
+
+/* タブレット以下（<= 768px） */
+@media (max-width: 768px) {
+
+  .wrapper { width: min(100% - 1.5rem, 960px); }
+
+  .hero { min-height: 56vh; }
+  .hero h1 { font-size: clamp(22px, 6vw, 36px); }
+
+  .card {
+    width: 85%;
+    height: auto;
+    padding-block: 28px;
+  }
+
+  .card.open .card-content { font-size: clamp(18px, 4.6vw, 24px); }
+
+  .media { margin-block: var(--space); }
+}
+
+/* スマホ縦（<= 480px） */
+@media (max-width: 480px) {
+
+  .wrapper { width: min(100% - 1rem, 960px); }
+
+  .hero { min-height: 48vh; }
+  .hero h1 { font-size: clamp(20px, 7vw, 30px); }
+
+  .content p,
+  .love p { font-size: clamp(15px, 4vw, 18px); }
+
+  .card {
+    width: 92%;
+    padding-block: 24px;
+    border-width: 2px;
+  }
+
+  .card.open .card-content { font-size: clamp(16px, 4.2vw, 22px); }
+  .card.open .closeBtn { padding: 10px 16px; font-size: .95rem; }
+}
