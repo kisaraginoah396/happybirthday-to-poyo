@@ -80,7 +80,22 @@
       e.stopPropagation(); // 親クリックを止める
       card.classList.remove("open");
     });
+
+        // 開く
+card.addEventListener("click", () => {
+  card.classList.add("open");
+  document.body.classList.add("no-scroll");   // ← 追加
+  closeBtn?.focus();
+});
+
+// 閉じる
+closeBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  card.classList.remove("open");
+  document.body.classList.remove("no-scroll"); // ← 追加
+});
   </script>
 
 </body>
 </html>
+
