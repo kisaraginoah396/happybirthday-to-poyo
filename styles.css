@@ -21,11 +21,17 @@ h1 {
   background-size: cover;     /* エリアいっぱいに調整 */
   background-position: center; /* 中央に配置 */
   background-repeat: no-repeat; /* 繰り返しなし */
-  height: 600px;              /* 高さを指定（必須！） */
+  min-height: 100svh;             /* 高さを指定（必須！） */
   color: white;               /* 文字色を白に変更 */
   display: flex;              /* 縦横中央に寄せる */
   justify-content: center;
   align-items: center;
+}
+
+@supports (height: 100dvh) {
+  .hero {
+    min-height: 100dvh;       /* ブラウザUIを除いた実画面高に対応 */
+  }
 }
 
 .poyo {
@@ -43,8 +49,8 @@ h1 {
 
 
 .card {
-  width: 220px;
-  height: 140px;
+ width: clamp(220px, 80vw, 340px);
+  height: clamp(180px, 50vh, 300px); /* ← 新しい高さ指定 */
   background: #88e1f3;
   border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
@@ -399,3 +405,20 @@ h1 {
   right: calc(env(safe-area-inset-right, 0px) + 10px);
   z-index: 1;
 }
+
+.card.open .card-content {
+  display: block;
+  width: 100%;
+  max-height: calc(100svh - 120px); /* 画面からはみ出すときはスクロール */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px;
+}
+
+@supports (height: 100dvh) {
+  .card.open .card-content {
+    max-height: calc(100dvh - 120px);
+  }
+}
+
+
