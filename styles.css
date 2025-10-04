@@ -337,3 +337,65 @@ h1 {
   .card.open .card-content { font-size: clamp(16px, 4.2vw, 22px); }
   .card.open .closeBtn { padding: 10px 16px; font-size: .95rem; }
 }
+
+
+/* --- スマホ縦向きでのフル画面対策（アドレスバー対策込み） --- */
+.card.open {
+  width: 100vw;
+  height: 100svh;                 /* iOS/Androidで見出しバーの縮みを考慮 */
+  padding:
+    calc(env(safe-area-inset-top, 0px) + 16px)
+    calc(env(safe-area-inset-right, 0px) + 16px)
+    calc(env(safe-area-inset-bottom, 0px) + 16px)
+    calc(env(safe-area-inset-left, 0px) + 16px);
+}
+
+/* さらに正確な端末高が使える環境では 100dvh に置換 */
+@supports (height: 100dvh) {
+  .card.open { height: 100dvh; }
+}
+
+/* 開いたときの本文エリアだけスクロール可能に */
+.card.open .card-content {
+  display: block;
+  width: min(920px, 92vw);
+  /* 上のpaddingやボタン分を差し引いて、本文だけがスクロール */
+  max-height: calc(100svh - 120px);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;  /* iOS慣性スクロール */
+  text-align: left;
+  margin: 0 auto;
+}
+
+/* dvhが使えるならそちらを優先 */
+@supports (height: 100dvh) {
+  .card.open .card-content {
+    max-height: calc(100dvh - 120px);
+  }
+}
+
+/* 背景のページがスクロールしないように（後述JSとセット） */
+.no-scroll {
+  height: 100svh;
+  overflow: hidden;
+}
+@supports (height: 100dvh) {
+  .no-scroll { height: 100dvh; }
+}
+
+/* 画面幅が狭いときは本文のフォント/余白を詰める */
+@media (max-width: 480px) {
+  .card.open .card-content {
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 8px 4px;
+  }
+}
+
+/* 閉じるボタンを右上固定にしたい場合（任意） */
+.card.open .closeBtn {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + 10px);
+  right: calc(env(safe-area-inset-right, 0px) + 10px);
+  z-index: 1;
+}
