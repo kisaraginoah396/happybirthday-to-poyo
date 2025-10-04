@@ -17,7 +17,7 @@ h1 {
   color: #88e1f3;
 }
 .hero {
-  background-image: url("Aurora.bg.png"); /* 背景画像 */
+  background-image: url("./Aurora.bg.png"); /* 背景画像 */
   background-size: cover;     /* エリアいっぱいに調整 */
   background-position: center; /* 中央に配置 */
   background-repeat: no-repeat; /* 繰り返しなし */
@@ -29,7 +29,7 @@ h1 {
 }
 
 .poyo {
-  background-image: url(Aurora.bg.png);
+  background-image: url("Aurora.bg.png");
 }
 
 
